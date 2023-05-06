@@ -1,0 +1,8 @@
+# Ignore local configuration files
+/instance/
+
+# Ignore data directories
+/data/
+
+# Ignore generated files
+*.pyc
