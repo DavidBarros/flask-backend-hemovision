@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 flask = "*"
+flask-pymongo = "*"
+flask-jwt = "*"
+pymongo = "*"
+jwt = "*"
+pyjwt = "*"
 
 [dev-packages]
 
