@@ -11,7 +11,7 @@ class User:
     @staticmethod
     def from_dict(user_dict):
         return User(
-            _id=user_dict.get('_id'),
+
             firstName=user_dict.get('firstName'),
             lastName=user_dict.get('lastName'),
             birthDate=user_dict.get('birthDate'),
@@ -21,7 +21,6 @@ class User:
 
     def to_dict(self):
         return {
-            '_id': self._id,
             'firstName': self.firstName,
             'lastName': self.lastName,
             'birthDate': self.birthDate,

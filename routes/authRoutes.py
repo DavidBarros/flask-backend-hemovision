@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from modelos.user import User
+from model.user import User
 from services.auth_service import AuthService
 
 auth_routes = Blueprint('auth_routes', __name__)
@@ -7,21 +7,22 @@ auth_routes = Blueprint('auth_routes', __name__)
 
 @auth_routes.route('/register', methods=['POST'])
 def register():
-
-    firstName = request.json.get("firstName")
-    lastName = request.json.get("lastName")
-    birthDate = request.json.get("birthDate")
-    email = request.json.get("email")
-    password = request.json.get("password")
-
-    user = User(firstName=firstName, lastName=lastName,
-                birthDate=birthDate, email=email, password=password)
     try:
-        registeredUser = AuthService.createUser(user)
-        registeredUser._id = str(registeredUser._id)
-        return jsonify(registeredUser.to_dict()), 201
+        data = request.get_json()
+        firstName = data.get("firstName")
+        lastName = data.get("lastName")
+        birthDate = data.get("birthDate")
+        email = data.get("email")
+        password = data.get("password")
+
+        registeredUser = AuthService.createUser(
+            firstName, lastName, birthDate, email, password)
+        registeredUser["email"] = str(email)
+
+        return jsonify(f"{registeredUser['firstName']}, seu cadastro foi realizado com sucesso"), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
+
 
 # @auth_routes.route('/login', methods=['POST'])
 # def login():
