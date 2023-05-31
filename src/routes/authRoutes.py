@@ -8,15 +8,11 @@ auth_routes = Blueprint('auth_routes', __name__)
 def register():
     try:
         data = request.get_json()
-        firstName = data.get("firstName")
-        lastName = data.get("lastName")
-        birthDate = data.get("birthDate")
-        email = data.get("email")
-        password = data.get("password")
-
-        registeredUser = AuthService.createUser(
-            firstName, lastName, birthDate, email, password)
-        registeredUser["email"] = str(email)
+        
+        registeredUser = AuthService.createUser(firstName=data.get("firstName"), lastName=data.get("lastName"), 
+                                                birthDate=data.get("birthDate"), email=data.get("email"), password=data.get("password"))
+        
+        registeredUser["email"] = str(data.get("email"))
 
         return jsonify(f"{registeredUser['firstName']}, seu cadastro foi realizado com sucesso"), 201
     except Exception as e:
