@@ -3,12 +3,14 @@
 Hemovision is a social network for biomedical and related areas, it helps the user to classify peripheral blood cells through artificial intelligence and encourages the community with discussions. Made with Python-Flask.
 
 #Prerequisites
+
 Make sure you have the following software installed in your development environment:
 
 Python 3.11: Download Python
 Pipenv: Pipenv Installation
 
 #Installation
+
 Follow the steps below to set up the development environment and install the necessary dependencies:
 
 Clone the project repository:
