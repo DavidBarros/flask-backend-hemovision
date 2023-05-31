@@ -2,43 +2,44 @@
 
 Hemovision is a social network for biomedical and related areas, it helps the user to classify peripheral blood cells through artificial intelligence and encourages the community with discussions. Made with Python-Flask.
 
-Prerequisites
+#Prerequisites
 Make sure you have the following software installed in your development environment:
 
 Python 3.11: Download Python
 Pipenv: Pipenv Installation
-Installation
 
+#Installation
 Follow the steps below to set up the development environment and install the necessary dependencies:
 
 Clone the project repository:
 
-shell
-Copy code
+```
 git clone https://github.com/DavidBarros/flask-backend-hemovision
+```
 
 Navigate to the project directory:
 
-shell
-Copy code
+```
 cd your-project
+```
 
 Create a virtual environment and install the dependencies using Pipenv:
 
-shell
-Copy code
+```
 pipenv install
+```
 
 Activate the virtual environment:
 
-shell
-Copy code
+```
 pipenv shell
+```
 
 Run the Flask application:
 
-shell
+```
 Flask Run
+```
 
 Configuration
 If necessary, adjust the application settings in the config.py file.
