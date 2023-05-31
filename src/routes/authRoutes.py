@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-from model.user import User
 from services.auth_service import AuthService
 
 auth_routes = Blueprint('auth_routes', __name__)
