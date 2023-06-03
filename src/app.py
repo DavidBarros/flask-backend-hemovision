@@ -1,6 +1,6 @@
 from flask import Flask
-from routes.authRoutes import auth_routes
 
+from .routes.authRoutes import auth_routes
 
 app = Flask(__name__)
 

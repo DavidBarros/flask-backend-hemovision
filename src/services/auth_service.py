@@ -1,6 +1,6 @@
 from pymongo import MongoClient
-from model.user import User
 
+from ..model.user import User
 
 client = MongoClient('mongodb://localhost:27017/')
 db = client['hemovision-db']
@@ -11,7 +11,7 @@ class AuthService:
     @staticmethod
     def createUser(firstName, lastName, birthDate, email, password):
         newUser = User(firstName, lastName,
-                       birthDate, email, password)
+                       birthDate, email, generate_password_hash(password))
         db.users.insert_one(newUser.to_dict())
         return (newUser.to_dict())
 
@@ -19,4 +19,5 @@ class AuthService:
 
     # def generate_token():
 
+###
 ###

@@ -11,6 +11,7 @@ pymongo = "*"
 jwt = "*"
 pyjwt = "*"
 python-dotenv = "*"
+werkzeug = "*"
 
 [dev-packages]
 
