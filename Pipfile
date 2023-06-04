@@ -12,6 +12,7 @@ jwt = "*"
 pyjwt = "*"
 python-dotenv = "*"
 werkzeug = "*"
+black = "*"
 
 [dev-packages]
 

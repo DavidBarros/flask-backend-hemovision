@@ -1,11 +1,14 @@
 from flask import Flask
 
-from .routes.authRoutes import auth_routes
-
-app = Flask(__name__)
-
-app.register_blueprint(auth_routes)
+from .extensions import database
+from .routes.authRoutes import authRoutes
 
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(authRoutes)
+    app.config["MONGO_URI"] = "mongodb://localhost:27017/hemovision-db"
+    database.init_app(app)
+
+    return app
+

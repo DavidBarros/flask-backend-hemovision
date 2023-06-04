@@ -1,8 +1,11 @@
+import uuid
+
+
 class User:
 
     def __init__(self,  firstName: str, lastName: str,
                  birthDate: str, email: str, password: str):
-        self._id = None
+        self._id = str(uuid.uuid4())
         self.firstName = firstName
         self.lastName = lastName
         self.birthDate = birthDate
@@ -12,7 +15,6 @@ class User:
     @staticmethod
     def from_dict(user_dict):
         return User(
-
             firstName=user_dict.get('firstName'),
             lastName=user_dict.get('lastName'),
             birthDate=user_dict.get('birthDate'),
@@ -22,6 +24,7 @@ class User:
 
     def to_dict(self):
         return {
+            '_id':self._id,
             'firstName': self.firstName,
             'lastName': self.lastName,
             'birthDate': self.birthDate,

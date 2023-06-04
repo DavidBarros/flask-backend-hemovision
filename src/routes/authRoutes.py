@@ -1,17 +1,21 @@
 from flask import Blueprint, jsonify, request
 
-from ..services.auth_service import AuthService
+from ..services.authService import AuthService
 
-auth_routes = Blueprint('auth_routes', __name__)
+authRoutes = Blueprint('auth_routes', __name__)
 
 
-@auth_routes.route('/register', methods=['POST'])
+
+@authRoutes.route('/register', methods=['POST'])
 def register():
     try:
         data = request.get_json()
         
-        registeredUser = AuthService.createUser(firstName=data.get("firstName"), lastName=data.get("lastName"), 
-                                                birthDate=data.get("birthDate"), email=data.get("email"), password=data.get("password"))
+        registeredUser = AuthService.createUser(firstName=data.get("firstName"), 
+                                                lastName=data.get("lastName"), 
+                                                birthDate=data.get("birthDate"), 
+                                                email=data.get("email"), 
+                                                password=data.get("password"))
         
         registeredUser["email"] = str(data.get("email"))
 
@@ -20,15 +24,15 @@ def register():
         return jsonify({'error': str(e)}), 400
 
 
-# @auth_routes.route('/login', methods=['POST'])
-# def login():
-#     email = request.json.get('email')
-#     password = request.json.get('password')
+@authRoutes.route('/login', methods=['POST'])
+def login():
+    email = request.json.get('email')
+    password = request.json.get('password')
 
-#     user = AuthService.authenticate(email, password)
-#     if not user:
-#         return jsonify({'message': 'Invalid credentials'}), 401
+    user = AuthService.authenticate(email, password)
+    if not user:
+        return jsonify({'message': 'Invalid credentials'}), 401
 
-#     token = AuthService.generate_token(user)
+    token = AuthService.generate_token(user)
 
-#     return jsonify({'token': token.decode('UTF-8')})
+    return jsonify({'token': token.decode('UTF-8')})

@@ -7,7 +7,6 @@ Hemovision is a social network for biomedical and related areas, it helps the us
 Make sure you have the following software installed in your development environment:
 
 -Python 3.11: Download Python
--Pipenv: Pipenv Installation
 
 ## Installation
 
@@ -25,10 +24,16 @@ Navigate to the project directory:
 cd your-project
 ```
 
+Download pipenv:
+
+```
+pip install pipenv
+```
+
 Create a virtual environment and install the dependencies using Pipenv:
 
 ```
-pipenv install
+pipenv install  --dev
 ```
 
 Activate the virtual environment:
