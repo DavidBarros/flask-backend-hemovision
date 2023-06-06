@@ -6,15 +6,14 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-pymongo = "*"
-flask-jwt = "*"
 pymongo = "*"
-jwt = "*"
-pyjwt = "*"
 python-dotenv = "*"
 werkzeug = "*"
 black = "*"
+flask-jwt-extended = "*"
+
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.10"

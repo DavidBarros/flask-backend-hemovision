@@ -6,7 +6,7 @@ Hemovision is a social network for biomedical and related areas, it helps the us
 
 Make sure you have the following software installed in your development environment:
 
--Python 3.11: Download Python
+-Python 3.10: Download Python
 
 ## Installation
 
