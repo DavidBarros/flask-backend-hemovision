@@ -11,7 +11,7 @@ python-dotenv = "*"
 werkzeug = "*"
 black = "*"
 flask-jwt-extended = "*"
-
+flask-smorest = "*"
 
 [dev-packages]
 

@@ -5,7 +5,7 @@ class User:
 
     def __init__(self,  firstName: str, lastName: str,
                  birthDate: str, email: str, password: str):
-        self._id = str(uuid.uuid4())
+        self._id = str(uuid.uuid4().hex)
         self.firstName = firstName
         self.lastName = lastName
         self.birthDate = birthDate
