@@ -1,11 +1,11 @@
-import uuid
+import shortuuid
 
 
 class User:
     def __init__(
         self, firstName: str, lastName: str, birthDate: str, email: str, password: str
     ):
-        self._id = str(uuid.uuid4().hex)
+        self._id = shortuuid.uuid()
         self.firstName = firstName
         self.lastName = lastName
         self.birthDate = birthDate

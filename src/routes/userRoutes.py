@@ -13,7 +13,7 @@ blp = Blueprint("Users", "users", description="Operations on users")
 class UserRegister(MethodView):
     @blp.arguments(UserSchema)
     def post(self, userData):
-        if mongo.db.users.find_one(userData["email"]):
+        if mongo.db.users.find_one({"email": userData["email"]}):
             abort(409, message="A user with that email already exists.")
 
         user = User(
@@ -26,3 +26,17 @@ class UserRegister(MethodView):
         userDict = user.to_dict()
         mongo.db.users.insert_one(userDict)
         return {"message": "User created successfully."}, 201
+
+
+@blp.route("/user/<string:user_id>")
+class Users(MethodView):
+    @blp.response(200, UserSchema)
+    def get(self, user_id):
+        user = mongo.db.users.find_one_or_404({"_id": user_id})
+        return user
+
+    # def put(self, user_id):
+
+    def delete(self, user_id):
+        mongo.db.users.delete_one({"_id": user_id})
+        return {"message": "User deleted."}, 200

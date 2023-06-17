@@ -12,6 +12,7 @@ werkzeug = "*"
 black = "*"
 flask-jwt-extended = "*"
 flask-smorest = "*"
+shortuuid = "*"
 
 [dev-packages]
 
