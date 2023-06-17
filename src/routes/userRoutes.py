@@ -1,22 +1,28 @@
-from flask import Blueprint, jsonify, request
+from flask.views import MethodView
+from flask_smorest import Blueprint, abort
+from werkzeug.security import generate_password_hash
 
-from ..services.userService import userService
+from ..extensions.database import mongo
+from ..extensions.schemas import UserSchema
+from ..models.user import User
 
-userRoutes = Blueprint("userRoutes", __name__)
+blp = Blueprint("Users", "users", description="Operations on users")
 
-@userRoutes.route('/register', methods=['POST'])
-def register():
-    try:
-        data = request.get_json()
-        
-        registeredUser = userService.createUser(firstName=data.get("firstName"), 
-                                                lastName=data.get("lastName"), 
-                                                birthDate=data.get("birthDate"), 
-                                                email=data.get("email"), 
-                                                password=data.get("password"))
-        
-        registeredUser["email"] = str(data.get("email"))
 
-        return jsonify(f"{registeredUser['firstName']}, seu cadastro foi realizado com sucesso"), 201
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400        
+@blp.route("/register")
+class UserRegister(MethodView):
+    @blp.arguments(UserSchema)
+    def post(self, userData):
+        if mongo.db.users.find_one(userData["email"]):
+            abort(409, message="A user with that email already exists.")
+
+        user = User(
+            firstName=userData["firstName"],
+            lastName=userData["lastName"],
+            birthDate=userData["birthDate"],
+            email=userData["email"],
+            password=generate_password_hash(userData["password"]),
+        )
+        userDict = user.to_dict()
+        mongo.db.users.insert_one(userDict)
+        return {"message": "User created successfully."}, 201
